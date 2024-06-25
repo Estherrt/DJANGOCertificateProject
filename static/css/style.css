@@ -1,0 +1,45 @@
+.main{
+    border:1px solid grey;
+    width:300px;
+    padding:30px;
+    margin:auto;
+    background:transparent;
+    backdrop-filter: blur(30px);
+    margin-top: 170px;
+    text-align:center;
+    box-shadow: 2px 2px black;
+}
+
+h1{
+    color:antiquewhite
+}
+
+body{
+    margin:0px auto;
+    padding:0px;
+}
+
+.mainbody{
+    background-image: url("/static/image/picc.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    max-height:100%;
+    max-width: 100%;
+}
+
+input{
+    background: transparent;
+    width:290px;
+    height:30px;
+    border-radius: 15px;
+    padding:0px 10px;
+    color:beige;
+}
+
+input::placeholder{
+    color:azure;
+}
+
+.loginbutton{
+    background: rgb(75, 132, 159);
+}

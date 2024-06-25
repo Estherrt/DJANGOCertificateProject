@@ -1,0 +1,13 @@
+<h1>Participant List</h1>
+
+<!-- <a href="{% url 'create' %}">Create an account</a> -->
+<table border="1" cellspacing="0">
+<tr><th>Name</th><th>Course</th><th>Email</th><th>Edit</th><th>Delete</th></tr>
+{% for i in data %}
+<tr><td>{{i.name}}</td><td>{{i.course}}</td><td>{{i.email}}</td><td><a href="edit/{{i.id}}">Edit</a></td><td><a href="delete/{{i.id}}">Delete</a></td></tr>
+{% endfor %}
+</table>
+<p>Recent Visits:{{recent_data_set}}</p>
+<p>Number of visits:{{visits}}</p>
+{% for j in recent_data_set %}<p>{{j.name}}</p>{% endfor %}
+<a href="{% url 'logout' %}">Logout</a>
