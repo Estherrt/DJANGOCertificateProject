@@ -4,4 +4,4 @@ from .models import Participant
 class PForm(forms.ModelForm):
     class Meta:
         model=Participant
-        fields="__all__"
+        fields=["name","course","email"]

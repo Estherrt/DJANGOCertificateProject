@@ -48,8 +48,10 @@ def form_logout(request):
 
 def form_create(request):
     form=PForm(request.POST or None, request.FILES or None)
-    if form.is_valid():
-        form.save()
+    if request.method == 'POST' and form.is_valid():
+        participant = form.save(commit=False)
+        participant.user = request.user  # Associate the participant with the current user
+        participant.save()
     else:
         form=PForm()
     context={'form':form}
@@ -57,37 +59,41 @@ def form_create(request):
 
 @login_required(login_url='login') 
 def form_display(request):
+    data=None
     recent_visits=request.session.get('recent_visits',[])
     count=request.session.get('count',0)
     count=int(count)
     count+=1
-    recent_data_set=Participant.objects.filter(pk__in=recent_visits)
+    recent_data_set=Participant.objects.filter(pk__in=recent_visits, user=request.user)
     request.session['count']=count
-    data=Participant.objects.all()
+    data = Participant.objects.filter(user=request.user)
     response=render(request,'display.html',{'data':data,'visits':count,'recent_data_set':recent_data_set})
     
     
     return response
 
+
 @login_required(login_url='login') 
 def form_delete(request,pk):
     instance_to_be_deleted=Participant.objects.get(pk=pk)
     instance_to_be_deleted.delete()
-    return HttpResponseRedirect(reverse('list'))
+    return HttpResponseRedirect(reverse('display'))
 
 @login_required(login_url='login') 
 def form_edit(request,pk):
     instance_to_be_edited=Participant.objects.get(pk=pk)
-    # if request.POST:
-    #     form=StuForm(instance=instance_to_be_edited)
-    #     # if form.is_valid():
-    #     #     instance_to_be_edited.save()
-    # else:
-    recent_visits=request.session.get('recent_visits',[])
-    recent_visits.insert(0,pk)
-    request.session['recent_visits']=recent_visits
-    form=PForm(instance=instance_to_be_edited)
-    instance_to_be_edited.save()
-    content={'form':form}
-    return render(request,'create.html',content)
+    if request.method == 'POST':
+        form = PForm(request.POST, instance=instance_to_be_edited)
+        if form.is_valid():
+            form.save()
+            return redirect('display')
+    else:
+        form = PForm(instance=instance_to_be_edited)
 
+    recent_visits = request.session.get('recent_visits', [])
+    if pk not in recent_visits:
+        recent_visits.insert(0, pk)
+    request.session['recent_visits'] = recent_visits
+
+    content = {'form': form}
+    return render(request, 'create.html', content)
