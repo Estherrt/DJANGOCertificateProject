@@ -5,11 +5,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     {% load static %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
 </head>
-<body class="mainbody">
-    <div >
-        <div class="main" >
+<body>
+    <div class="one" id="mb">
             <h1>Login</h1>
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
@@ -18,8 +17,8 @@
                 <input type="submit" class="loginbutton" value="Login">
                 <p><a href="{% url 'signup' %}">Don't have one? Create an account</a></p>
             </form>
-        </div>
     </div>
+
     
     
 </body>

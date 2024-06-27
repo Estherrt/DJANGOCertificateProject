@@ -7,9 +7,9 @@
     {% load static %}
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
-<body class="mainbody">
-    <div >
-        <div class="main" >
+
+<body>
+    <div class="two" id="mb">
             <h1>Signup</h1>
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
@@ -21,7 +21,6 @@
                 <input type="submit" class="loginbutton" value="Sign up">
                 <p><a href="{% url 'login' %}">Already have an account? Login</a></p>
             </form>
-        </div>
     </div>
     
     
