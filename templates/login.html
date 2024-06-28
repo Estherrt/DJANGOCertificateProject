@@ -9,13 +9,13 @@
 </head>
 <body>
     <div class="one" id="mb">
-            <h1>Login</h1>
+            <h1 class="heading">Login</h1>
             <form method="post" enctype="multipart/form-data">
                 {% csrf_token %}
                 <input type="text" placeholder="Username" name="username"><br><br>
                 <input type="password" placeholder="Password" name="password"><br><br>
-                <input type="submit" class="loginbutton" value="Login">
-                <p><a href="{% url 'signup' %}">Don't have one? Create an account</a></p>
+                <input type="submit" class="lbutton" value="Login">
+                <p class="change"><a href="{% url 'signup' %}">Don't have one? Create an account</a></p>
             </form>
     </div>
 

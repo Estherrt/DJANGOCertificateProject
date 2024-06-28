@@ -1,4 +1,4 @@
- #mb{
+#mb{
     border: 1px solid grey;
     width: 300px;
     padding:30px;
@@ -7,6 +7,32 @@
     text-align: center;
     box-shadow: 2px 2px black;
     
+}
+
+nav{
+    background:rgb(1, 1, 10);
+    display:flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 50px;
+    padding: 5px;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+li{
+    list-style: none;
+    font-size: 15px;
+}
+
+.cr{
+    color:bisque;
+    padding:5px;
+    font-family:cursive;
+}
+
+a{
+    text-decoration: none;
 }
 
 .one{
@@ -21,6 +47,7 @@
 
 h1 {
     color: antiquewhite;
+    text-shadow: 2px 2px black;
 }
 
 body {
@@ -42,10 +69,60 @@ input {
     color: beige;
 }
 
-input::placeholder {
-    color: azure;
+.myfieldclass{
+    color:wheat;
 }
 
-.loginbutton {
+.lin{
+    color:rgb(38, 139, 139);
+    text-shadow: 1px 1px black;
+}
+
+.linn{
+    color:rgb(41, 141, 184);
+    text-shadow: 2px 2px black;
+}
+
+input::placeholder {
+    color: rgb(118, 193, 193);
+    text-shadow: none;
+}
+
+.lbutton {
     background: rgb(75, 132, 159);
+}
+
+.create_det{
+    background:transparent;
+    backdrop-filter: blur(30px);
+    border: 2px solid black;
+    text-align: center;
+    margin:auto;
+    margin-top: 150px;
+    width: 400px;
+    padding: 20px;
+}
+
+.display_det{
+    background:transparent;
+    backdrop-filter: blur(30px);
+    border: 2px solid black;
+    text-align: center;
+    margin:auto;
+    margin-top: 150px;
+    width: 700px;
+    padding: 20px;
+}
+
+#disp_t{
+    align-items: center;
+    margin:auto;
+}
+
+.change{
+    color:rgb(4, 4, 45)
+}
+
+th,td{
+    padding: 10px;
 }

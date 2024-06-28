@@ -1,9 +1,23 @@
-<h1>Details</h1>
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-
-    {{form.as_p}}
-    <button type="submit">Submit</button>
-    <a href="{% url 'display' %}">Display data</a>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">
+</head>
+<body>
+    {% include 'base.html' %}
+    <div class="create_det">
+        <h1 class="heading">Details</h1>
+        <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        {{form.as_p}}
+        <input type="submit" class="lbutton" value='Submit'>
+    </div>
+    
 
 </form>
+</body>
+</html>

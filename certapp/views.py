@@ -9,12 +9,12 @@ from django.contrib.auth import authenticate,login as authlogin,logout as authlo
 
 from django.http import FileResponse
 import io
-from reportlab.pdfgen import canvas
-from reportlab.lib.units import inch # type: ignore
+from reportlab.pdfgen import canvas 
+from reportlab.lib.units import inch 
 from reportlab.lib.pagesizes import A4, landscape
 from reportlab.lib import utils
-from reportlab.lib.units import cm
-from reportlab.platypus import Frame, Image
+from reportlab.lib.units import cm 
+from reportlab.platypus import Frame, Image 
 
 # Create your views here.
 def form_login(request):
@@ -115,9 +115,6 @@ def form_download(request,pk):
     bg='C:/Django_project/cert/static/image/cert_template.png'
 
     c=canvas.Canvas(buf,pagesize=landscape(A4))
-    textob=c.beginText()
-    textob.setTextOrigin(inch, inch)
-    textob.setFont("Helvetica", 14)
 
     document_width, document_height = landscape(A4)
     img = utils.ImageReader(bg)
@@ -129,9 +126,15 @@ def form_download(request,pk):
     c.drawImage(bg, document_width - print_width, document_height - print_height, width=print_width,height=print_height)
 
     participant=Participant.objects.get(pk=pk)
-    
-    c.drawCentredString(420,297,participant.name)
-    c.drawCentredString(420,220,participant.course)
+
+    c.translate(inch, inch)
+    c.setFont("Times-BoldItalic", 30)
+    c.setFillColorRGB(155/255, 122/255, 1/255)
+    c.drawCentredString(350,230,participant.name)
+
+    c.setFont("Times-Bold", 14)
+    c.setFillColorRGB(0/255, 0/255, 0/255)
+    c.drawCentredString(350,150,participant.course)
 
     sign1='C:/Django_project/cert/static/image/sign1.png'
     sign2='C:/Django_project/cert/static/image/sign2.png'
@@ -139,8 +142,8 @@ def form_download(request,pk):
     sign1_path, sign1_width, sign1_height = get_image(sign1, width=4*cm)
     sign2_path, sign2_width, sign2_height = get_image(sign2, width=4*cm)
 
-    c.drawImage(sign1_path, 210, 160, width=sign1_width, height=sign1_height)
-    c.drawImage(sign2_path, 530, 160, width=sign2_width, height=sign2_height)
+    c.drawImage(sign1_path, 140, 90, width=sign1_width, height=sign1_height)
+    c.drawImage(sign2_path, 450, 90, width=sign2_width, height=sign2_height)
 
     c.showPage()
     c.save()

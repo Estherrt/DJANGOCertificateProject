@@ -1,13 +1,27 @@
-<h1>Participant List</h1>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static '/css/style.css' %}">    
+</head>
+<body>
+    {% include 'base.html' %}
+    <div class="display_det">
+        <h1 class="heading">Participant List</h1>
+        <table border="1" cellspacing="0" id="disp_t">
+        <tr><th class="linn">Name</th><th class="linn">Course</th><th class="linn">Email</th><th class="linn">Edit</th><th class="linn">Delete</th><th class="linn">Download</th></tr>
+        {% for i in data %}
+        <tr><td class="lin">{{i.name}}</td><td class="lin">{{i.course}}</td><td class="lin">{{i.email}}</td><td><a href="{% url 'edit' pk=i.pk %}" class="lin">Edit</a></td><td><a href="{% url 'delete' pk=i.pk %}" class="lin">Delete</a></td><td><a href="{% url 'download' pk=i.pk %}" class="lin">Download</a></td></tr>
+        {% endfor %}
+        </table>
+        <!-- <p>Recent Visits:{{recent_data_set}}</p>
+        <p>Number of visits:{{visits}}</p>
+        {% for j in recent_data_set %}<p>{{j.name}}</p>{% endfor %} -->
+    </div>
+    
 
-<!-- <a href="{% url 'create' %}">Create an account</a> -->
-<table border="1" cellspacing="0">
-<tr><th>Name</th><th>Course</th><th>Email</th><th>Edit</th><th>Delete</th><th>Download</th></tr>
-{% for i in data %}
-<tr><td>{{i.name}}</td><td>{{i.course}}</td><td>{{i.email}}</td><td><a href="{% url 'edit' pk=i.pk %}">Edit</a></td><td><a href="{% url 'delete' pk=i.pk %}">Delete</a></td><td><a href="{% url 'download' pk=i.pk %}">Download</a></td></tr>
-{% endfor %}
-</table>
-<!-- <p>Recent Visits:{{recent_data_set}}</p>
-<p>Number of visits:{{visits}}</p>
-{% for j in recent_data_set %}<p>{{j.name}}</p>{% endfor %} -->
-<a href="{% url 'logout' %}">Logout</a>
+</body>
+</html>
