@@ -50,10 +50,20 @@ h1 {
     text-shadow: 2px 2px black;
 }
 
-body {
+.l1 {
     margin: 0;
     padding: 0;
     background-image: url("/static/image/picc.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    max-height: 100%;
+    max-width: 100%;
+}
+
+.l2 {
+    margin: 0;
+    padding: 0;
+    background-image: url("/static/image/bg.jpg");
     background-size: cover;
     background-repeat: no-repeat;
     max-height: 100%;
@@ -74,18 +84,18 @@ input {
 }
 
 .lin{
-    color:rgb(38, 139, 139);
-    text-shadow: 1px 1px black;
+    color:rgb(22, 24, 17);
+    text-shadow: 1px 1px rgb(157, 154, 154);
 }
 
 .linn{
-    color:rgb(41, 141, 184);
-    text-shadow: 2px 2px black;
+    color:rgb(28, 40, 9);
+    text-shadow: 1px 1px rgb(92, 64, 64);
 }
 
 input::placeholder {
-    color: rgb(118, 193, 193);
-    text-shadow: none;
+    color: white;
+    text-shadow: 1.5px 1.5px rgb(20,5,42);
 }
 
 .lbutton {

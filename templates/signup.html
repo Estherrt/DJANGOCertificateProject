@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 
-<body>
+<body class="l1">
     <div class="two" id="mb">
             <h1>Signup</h1>
             <form method="post" enctype="multipart/form-data">
@@ -18,7 +18,7 @@
                 <input type="email" placeholder="Email" name="email"><br><br>
                 <input type="text" placeholder="Username" name="username"><br><br>
                 <input type="password" placeholder="Password" name="password"><br><br>
-                <input type="submit" class="loginbutton" value="Sign up">
+                <input type="submit" class="lbutton" value="Sign up">
                 <p class="change"><a href="{% url 'login' %}">Already have an account? Login</a></p>
             </form>
     </div>

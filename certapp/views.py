@@ -2,10 +2,11 @@ from django.shortcuts import render,redirect
 from .models import Participant
 from .forms import PForm
 from django.urls import reverse
-from django.http import HttpResponseRedirect
+from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login as authlogin,logout as authlogout
+from django.templatetags.static import static
 
 from django.http import FileResponse
 import io
@@ -44,6 +45,7 @@ def form_signup(request):
         password=request.POST["password"]
         try:
             users=User.objects.create_user(first_name=fname,last_name=lname,username=username,email=email,password=password)
+            return redirect(reverse('login'))
         except Exception as e:
             error_message=str(e)
             
@@ -109,8 +111,8 @@ def get_image(path, width=1*cm):
     aspect = ih / float(iw)
     return path, width, width * aspect
 
-@login_required(login_url='login')
-def form_download(request,pk):
+
+def generate_certificate(request,pk):
     buf=io.BytesIO()
     bg='C:/Django_project/cert/static/image/cert_template.png'
 
@@ -149,7 +151,16 @@ def form_download(request,pk):
     c.save()
     buf.seek(0)
 
+    return buf
 
-    
-
+@login_required(login_url='login')
+def form_download(request,pk):
+    buf = generate_certificate(request,pk)
     return FileResponse(buf, as_attachment=True, filename='certificate.pdf')
+
+@login_required(login_url='login')
+def form_view(request,pk):
+    buf = generate_certificate(request,pk)
+    response = HttpResponse(buf, content_type='application/pdf')
+    response['Content-Disposition'] = 'inline; filename="certificate.pdf"'
+    return response

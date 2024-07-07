@@ -7,14 +7,14 @@
     {% load static %}
     <link rel="stylesheet" href="{% static '/css/style.css' %}">    
 </head>
-<body>
+<body class="l2">
     {% include 'base.html' %}
     <div class="display_det">
         <h1 class="heading">Participant List</h1>
         <table border="1" cellspacing="0" id="disp_t">
-        <tr><th class="linn">Name</th><th class="linn">Course</th><th class="linn">Email</th><th class="linn">Edit</th><th class="linn">Delete</th><th class="linn">Download</th></tr>
+        <tr><th class="linn">Name</th><th class="linn">Course</th><th class="linn">Email</th><th class="linn">Edit</th><th class="linn">Delete</th><th class="linn">View</th><th class="linn">Download</th></tr>
         {% for i in data %}
-        <tr><td class="lin">{{i.name}}</td><td class="lin">{{i.course}}</td><td class="lin">{{i.email}}</td><td><a href="{% url 'edit' pk=i.pk %}" class="lin">Edit</a></td><td><a href="{% url 'delete' pk=i.pk %}" class="lin">Delete</a></td><td><a href="{% url 'download' pk=i.pk %}" class="lin">Download</a></td></tr>
+        <tr><td class="lin">{{i.name}}</td><td class="lin">{{i.course}}</td><td class="lin">{{i.email}}</td><td><a href="{% url 'edit' pk=i.pk %}" class="lin">Edit</a></td><td><a href="{% url 'delete' pk=i.pk %}" class="lin">Delete</a></td><td><a href="{% url 'view' pk=i.pk %}" class="lin">View</a></td><td><a href="{% url 'download' pk=i.pk %}" class="lin">Download</a></td></tr>
         {% endfor %}
         </table>
         <!-- <p>Recent Visits:{{recent_data_set}}</p>

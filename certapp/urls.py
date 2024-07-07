@@ -9,5 +9,6 @@ urlpatterns=[
     path('display/',views.form_display,name="display"),
     path('delete/<int:pk>/',views.form_delete,name="delete"),
     path('edit/<int:pk>/',views.form_edit,name="edit"),
+    path('view/<int:pk>/',views.form_view,name="view"),
     path('download/<int:pk>/',views.form_download,name="download"),
 ]
