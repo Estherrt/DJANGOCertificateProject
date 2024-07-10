@@ -6,7 +6,7 @@ from django.http import HttpResponseRedirect, HttpResponse
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from django.contrib.auth import authenticate,login as authlogin,logout as authlogout
-from django.templatetags.static import static
+from django.contrib.staticfiles import finders
 
 from django.http import FileResponse
 import io
@@ -114,7 +114,7 @@ def get_image(path, width=1*cm):
 
 def generate_certificate(request,pk):
     buf=io.BytesIO()
-    bg='C:/Django_project/cert/static/image/cert_template.png'
+    bg=finders.find('image/cert_template.png')
 
     c=canvas.Canvas(buf,pagesize=landscape(A4))
 
@@ -138,8 +138,8 @@ def generate_certificate(request,pk):
     c.setFillColorRGB(0/255, 0/255, 0/255)
     c.drawCentredString(350,150,participant.course)
 
-    sign1='C:/Django_project/cert/static/image/sign1.png'
-    sign2='C:/Django_project/cert/static/image/sign2.png'
+    sign1=finders.find('image/sign1.png')
+    sign2=finders.find('image/sign2.png')
 
     sign1_path, sign1_width, sign1_height = get_image(sign1, width=4*cm)
     sign2_path, sign2_width, sign2_height = get_image(sign2, width=4*cm)
